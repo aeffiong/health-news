@@ -34,6 +34,11 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Routes
+// a GET route to the home page
+app.get("/", function (req, res) {
+        res.render("index");
+});
+
 // A GET route for scraping the Greatist website
 app.get("/scrape", function(req, res) {
     // First, we grab the body of the html with request
@@ -51,10 +56,7 @@ app.get("/scrape", function(req, res) {
 
              // Log the results once you've looped through each of the elements found with cheerio
             console.log(results);
-    
-  
-   
-        
+         
         // Create a new Article using the `results` object built from scraping
         db.Article.create(results)
           .then(function(dbArticle) {
@@ -71,6 +73,37 @@ app.get("/scrape", function(req, res) {
       res.send("Scrape Complete");
     });
 });
+
+// Route for getting all Articles from the db - not currently working
+app.get("/articles", function(req, res) {
+    db.Article.find({}), function(err, articles) {
+        if (err) {
+            return err;
+            console.log(err);
+        } else {
+            res.json(articles);
+        }
+    }
+  });
+  
+  // Route for grabbing a specific Article by id, populate it with it's note
+  app.get("/articles/:id", function(req, res) {
+    // TODO
+    // ====
+    // Finish the route so it finds one article using the req.params.id,
+    // and run the populate method with "note",
+    // then responds with the article with the note included
+  });
+  
+  // Route for saving/updating an Article's associated Note
+  app.post("/articles/:id", function(req, res) {
+    // TODO
+    // ====
+    // save the new note that gets posted to the Notes collection
+    // then find an article from the req.params.id
+    // and update it's "note" property with the _id of the new note
+  });
+  
 
 
 // Start the server
