@@ -48,10 +48,12 @@ app.get("/scrape", function(req, res) {
             results.link = $(this).children().children().attr("href");
             results.title = $(this).children().children().html(); 
             results.description = $(this).find($(".blurb-cta-wrapper")).text();
-    });
+
+             // Log the results once you've looped through each of the elements found with cheerio
+            console.log(results);
+    
   
-    // Log the results once you've looped through each of the elements found with cheerio
-    console.log(results);
+   
         
         // Create a new Article using the `results` object built from scraping
         db.Article.create(results)
@@ -68,6 +70,7 @@ app.get("/scrape", function(req, res) {
       // If we were able to successfully scrape and save an Article, send a message to the client
       res.send("Scrape Complete");
     });
+});
 
 
 // Start the server
