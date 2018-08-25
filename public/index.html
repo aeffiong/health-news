@@ -4,9 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+     <link rel="stylesheet" href="./assets/css/style.css">
+
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <title>Greatist News Scrape</title>
 </head>
 <body>
-    <p>hi</p>
+    <div class="container">
+        <h1>Greatist Scrapper</h1>
+        <h2>Stay up to date on your health news!</h2>
+        <a class="waves-effect waves-light btn-large" id="scrapeButton" href="/scrape">Check for new articles here!</a>
+    </div>
+    <div id="wrapper">
+        <div id="articles"></div>
+        <div id="notes"></div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="./assets/js/app.js"></script>
 </body>
 </html>

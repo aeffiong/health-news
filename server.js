@@ -7,7 +7,7 @@ var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 
-var PORT = 8080;
+var PORT = 3000;
 
 // Require all models
 var db = require("./models");
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/greatistdb");
+mongoose.connect("mongodb://localhost/greatistdatabase");
 
 // Set Handlebars.
 // var exphbs = require("express-handlebars");
@@ -58,7 +58,7 @@ app.get("/scrape", function(req, res) {
             console.log(result);
          
         // Create a new Article using the `results` object built from scraping
-        db.Article.create(result)
+        db.Article.create({result}, {unique:true})
           .then(function(dbArticle) {
             // View the added result in the console
             console.log(dbArticle);
@@ -71,6 +71,7 @@ app.get("/scrape", function(req, res) {
   
       // If we were able to successfully scrape and save an Article, send a message to the client
       res.send("Scrape Complete");
+    //   res.redirect("/");
     });
 });
 
