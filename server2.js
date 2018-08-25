@@ -80,10 +80,7 @@ app.get("/articles", function(req, res) {
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
   db.Article.findOne({ _id: req.params.id })
-    .populate({
-      path: "notes",
-      populate: {path: "notes"}
-    })
+    .populate("note")
     .then(function(dbArticle) {
       res.json(dbArticle);
     })
@@ -99,7 +96,7 @@ app.post("/articles/:id", function(req, res) {
   db.Note.create(req.body)
     .then(function(dbNote) {
       console.log(dbNote);
-      db.Article.findOneAndUpdate({ _id: req.params.id }, {$push:{ notes: dbNote._id }}, { new: true })
+      return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true })
       .then(function(dbArticle) {
         console.log(dbArticle);
         
