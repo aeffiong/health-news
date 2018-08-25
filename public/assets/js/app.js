@@ -3,7 +3,7 @@ $.getJSON("/articles", function(data) {
     // For each one
     for (var i = 0; i < data.length; i++) {
       // Display the information on the page
-      $("#articles").append("<button data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].description + "</button><br>");
+      $("#articles").append("<button id='articlebtn' data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].description + "</button><br>");
     }
   });
 
@@ -13,8 +13,8 @@ $("#scrapeButton").on("click", function() {
   });
   
   
-  // Whenever someone clicks a p tag - when change from p to a, i get undefined
-  $(document).on("click", "button", function() {
+  // Whenever someone clicks a button tag
+  $(document).on("click", "#articlebtn", function() {
     // Empty the notes from the note section
     $("#notes").empty();
     // Save the id from the p tag
@@ -52,16 +52,18 @@ $("#scrapeButton").on("click", function() {
   $(document).on("click", "#savenote", function() {
     // Grab the id associated with the article from the submit button
     var thisId = $(this).attr("data-id");
+    var title = $("#titleinput").val();
+    var body = $("#bodyinput").val();
+    console.log("title: ", title);
+    console.log("body: ", body);
   
     // Run a POST request to change the note, using what's entered in the inputs
     $.ajax({
       method: "POST",
       url: "/articles/" + thisId,
       data: {
-        // Value taken from title input
-        title: $("#titleinput").val(),
-        // Value taken from note textarea
-        body: $("#bodyinput").val()
+        title: title,
+        body: body
       }
     })
       // With that done
