@@ -50,7 +50,7 @@ app.get("/scrape", function(req, res) {
         console.log(result);
 
       // Create a new Article using the `result` object built from scraping
-      db.Article.create(result)
+      db.Article.create({result}, {unique:true})
         .then(function(dbArticle) {
           // View the added result in the console
           console.log(dbArticle);
@@ -68,7 +68,7 @@ app.get("/scrape", function(req, res) {
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
-  db.Article.find({result}, {unique:true})
+  db.Article.find({})
     .then(function(dbArticle) {
       res.json(dbArticle);
     })

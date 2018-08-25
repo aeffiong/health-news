@@ -13,7 +13,7 @@ $("#scrapeButton").on("click", function() {
   });
   
   
-  // Whenever someone clicks a p tag
+  // Whenever someone clicks a p tag - when change from p to a, i get undefined
   $(document).on("click", "p", function() {
     // Empty the notes from the note section
     $("#notes").empty();
@@ -36,6 +36,7 @@ $("#scrapeButton").on("click", function() {
         $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
         // A button to submit a new note, with the id of the article saved to it
         $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+        // $("#notes").append("<a class='waves-effect waves-light btn-large data-id='" + data._id + "' id='savenote'>Save Note</a>")
   
         // If there's a note in the article
         if (data.note) {
