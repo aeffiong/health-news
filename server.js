@@ -28,15 +28,15 @@ app.use(express.static("public"));
 mongoose.connect("mongodb://localhost/greatistdb");
 
 // Set Handlebars.
-var exphbs = require("express-handlebars");
+// var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+// app.set("view engine", "handlebars");
 
 // Routes
 // a GET route to the home page
 app.get("/", function (req, res) {
-        res.render("index");
+        res.render("./index.html");
 });
 
 // A GET route for scraping the Greatist website
@@ -87,24 +87,30 @@ app.get("/articles", function(req, res) {
   
   // Route for grabbing a specific Article by id, populate it with it's note
   app.get("/articles/:id", function(req, res) {
-    // TODO
-    // ====
-    // Finish the route so it finds one article using the req.params.id,
-    // and run the populate method with "note",
-    // then responds with the article with the note included
+    db.Article.findOne({_id: req.params.id})
+     .populate("note")
+     .then(function(dbArticle) {
+         res.json(dbArticle);
+     })
+     .catch(function(err) {
+         res.json(err);
+     });
   });
   
   // Route for saving/updating an Article's associated Note
   app.post("/articles/:id", function(req, res) {
-    // TODO
-    // ====
-    // save the new note that gets posted to the Notes collection
-    // then find an article from the req.params.id
-    // and update it's "note" property with the _id of the new note
+      db.Note.create(req.body)
+       .then(function(dbNote) {
+           return db.Article.findOneAndUpdate({_id: req.params.id}, {note: dbNote._id}, {new: true});
+       })
+       .then(function(dbArticle) {
+           res.json(dbArticle);
+       })
+       .catch(function(err) {
+           res.json(err);
+       });
   });
   
-
-
 // Start the server
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
