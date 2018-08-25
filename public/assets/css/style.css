@@ -17,6 +17,9 @@ h3 {
 h2 {
     font-size: 30px;
 }
+button {
+  margin-bottom: 20px;
+}
 #notes {
   float: right;
   width: 30%;

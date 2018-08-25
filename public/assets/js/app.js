@@ -3,7 +3,7 @@ $.getJSON("/articles", function(data) {
     // For each one
     for (var i = 0; i < data.length; i++) {
       // Display the information on the page
-      $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].description + "</p>" + "<a class='waves-effect waves-light btn-large'>Add a Note</a>");
+      $("#articles").append("<button data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].description + "</button><br>");
     }
   });
 
@@ -14,7 +14,7 @@ $("#scrapeButton").on("click", function() {
   
   
   // Whenever someone clicks a p tag - when change from p to a, i get undefined
-  $(document).on("click", "p", function() {
+  $(document).on("click", "button", function() {
     // Empty the notes from the note section
     $("#notes").empty();
     // Save the id from the p tag
