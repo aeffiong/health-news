@@ -31,7 +31,7 @@ mongoose.connect("mongodb://localhost/greatistscraper");
 
 // Routes
 
-// A GET route for scraping the echoJS website
+// A GET route for scraping
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   axios.get("https://greatist.com/").then(function(response) {
@@ -105,6 +105,26 @@ app.post("/articles/:id", function(req, res) {
     })
 
     .catch(function(err) {
+      res.json(err);
+    });
+});
+
+// Route for deleting an Article's associated Note
+app.delete("/articles/delete/:id", function(req, res) {
+  console.log("this is " + req.body.title);
+  console.log("this is " + req.body.body);
+  db.Note.findOneAndDelete({"_id": req.params.note_id})
+    .then(function(dbNote) {
+      console.log(dbNote);
+      return db.Note.findOneAndDelete({ _id: req.params.id }, { note: dbNote._id }, { new: true })
+      .then(function(dbArticle) {
+        console.log(dbArticle);
+        
+        res.send("Note Deleted");
+    });
+  })
+  
+  .catch(function(err) {
       res.json(err);
     });
 });
