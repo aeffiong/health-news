@@ -27,7 +27,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/greatistscraper");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/greatistscraper"
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
 // Routes
 
