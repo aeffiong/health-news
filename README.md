@@ -1,14 +1,14 @@
 ## Health News Mongo Scrape
 
-Eat da Burger let's you order up your favorite burger and then devour it.
+Health News Mongo Scrape uses Cheerio to scrape articles to a MongoDB and display on this site. Users are able to add comments to each of the articles.
 
-Enter your burger of choice. Once entered, it will be stored to the MySQL database and posted on the site. When you are ready to eat it, click the Devour It! button, updating the information about that burger in the database and moving over to the devoured list of burgers.
+Each article and note is saved to the MongoDB allowing the information to be available each time the user comes back to the page.
 
-Eat da burger makes use of both front and back end technologies to create a complete end to end web application.
+Health News Mongo Scrape is a full-stack Node application showing the use of non-relational database while using Mongoose to allow for relations between collections to exist.
 
 ### Get Started
 
-To get started with Eat da Burger, use the link provided [here](https://secure-escarpment-38552.herokuapp.com/), and enjoy some of your favorite burgers.
+To get started with Health News Mongo Scrape, use the link provided [here](https://secure-escarpment-38552.herokuapp.com/), and add some comments to the articles.
 
 ### Technologies Used
 
@@ -20,6 +20,8 @@ To get started with Eat da Burger, use the link provided [here](https://secure-e
 * Express
 * MongoDB
 * Mongoose
+* Cheerio
+* Axios
 
 ### Built with:
 
