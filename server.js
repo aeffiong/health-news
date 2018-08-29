@@ -34,7 +34,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // Routes
 
 // A GET route for scraping
-app.get("/", function(req, res) {
+app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   axios.get("https://greatist.com/").then(function(response) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
