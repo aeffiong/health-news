@@ -22,19 +22,19 @@ var app = express();
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Use body-parser for handling form submissions
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/greatistscraper"
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes
 
 // A GET route for scraping
-app.get("/scrape", function(req, res) {
+app.get("/", function(req, res) {
   // First, we grab the body of the html with request
   axios.get("https://greatist.com/").then(function(response) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -115,14 +115,14 @@ app.post("/articles/:id", function(req, res) {
 app.delete("/articles/delete/:id", function(req, res) {
   console.log("this is " + req.body.title);
   console.log("this is " + req.body.body);
-  db.Note.findOneAndDelete({"_id": req.params.note_id})
+  db.Note.find({"_id": req.params.note_id})
     .then(function(dbNote) {
       console.log(dbNote);
-      return db.Note.findOneAndDelete({ _id: req.params.id }, { note: dbNote._id }, { new: true })
-      .then(function(dbArticle) {
-        console.log(dbArticle);
+      return db.Note.remove({ _id: dbNote._id }, { new: true })
+      .then(function(dbNote) {
+        console.log(dbNote);
         
-        res.send("Note Deleted");
+        res.json(dbNote);
     });
   })
   
