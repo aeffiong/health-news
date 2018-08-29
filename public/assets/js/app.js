@@ -13,7 +13,7 @@ $.getJSON("/articles", function(data) {
         method: "GET",
         url: "/scrape",
     }).then(function(data) {
-        console.log(data);
+        console.log("here is the " + data);
         window.location = "/";
         return data;
     })
