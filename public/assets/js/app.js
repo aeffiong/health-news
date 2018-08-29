@@ -13,8 +13,9 @@ $.getJSON("/articles", function(data) {
         method: "GET",
         url: "/scrape",
     }).then(function(data) {
-        console.log(data)
-        window.location = "/"
+        console.log(data);
+        window.location = "/";
+        return data;
     })
 });
   
