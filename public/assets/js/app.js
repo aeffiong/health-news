@@ -1,24 +1,24 @@
 // Grab the articles as a json
 $.getJSON("/articles", function(data) {
-  console.log("Here are the articles  " + data);
     // For each one
     for (var i = 0; i < data.length; i++) {
+      console.log("id " + data[i]._id + "title " + data[i].title + "link " + data[i].link);
       // Display the information on the page
       $("#articles").append("<button id='articlebtn' data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].description + "</button><br>");
     }
   });
 
 //   scrape button functionality
-  $("#scrapeButton").on("click", function() {
-    $.ajax({
-        method: "GET",
-        url: "/scrape",
-    }).then(function(data) {
-        console.log("here is the " + data);
-        window.location = "/";
-        return data;
-    })
-});
+//   $("#scrapeButton").on("click", function() {
+//     $.ajax({
+//         method: "GET",
+//         url: "/scrape",
+//     }).then(function(data) {
+//         console.log("here is the " + data);
+//         window.location = "/";
+//         return data;
+//     })
+// });
   
   
   // Whenever someone clicks the articlebtn
