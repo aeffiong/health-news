@@ -62,7 +62,7 @@ app.get("/scrape", function(req, res) {
           return res.json(err);
         });
     });
-
+    console.log('Scrape Complete')
     // If we were able to successfully scrape and save an Article, send a message to the client
     res.send("Scrape Complete");
   });
