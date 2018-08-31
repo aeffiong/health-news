@@ -40,6 +40,7 @@ app.get("/scrape", function(req, res) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
     // grab all the class = desc from the html
+    var resultContainer = [];
     $("div.desc").each(function(i, element) {
         // An empty object to save the data that we'll scrape
         var result = {};
@@ -52,15 +53,16 @@ app.get("/scrape", function(req, res) {
         console.log(result);
 
       // Create a new Article using the `result` object built from scraping
-      db.Article.create({result})
-        .then(function(dbArticle) {
-          // View the added result in the console
-          console.log(dbArticle);
-        })
-        .catch(function(err) {
-          // If an error occurred, send it to the client
-          return res.json(err);
-        });
+     
+    });
+    db.Article.create({resultContainer})
+    .then(function(dbArticle) {
+      // View the added result in the console
+      console.log(dbArticle);
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      return res.json(err);
     });
     console.log('Scrape Complete')
     // If we were able to successfully scrape and save an Article, send a message to the client
