@@ -1,6 +1,14 @@
 body { 
   background-color: white;
-  background-image: url("../images/abstract-art-astronomy-220071.jpg")
+  background-image: url("../images/background-berries-blueberries-1092730.jpg")
+ }
+ .container {
+   background-color: white;
+   opacity: 0.8;
+ }
+ .pageTop {
+   background-color: white;
+   opacity: 1;
  }
 #wrapper {
   width: 960px;
@@ -22,7 +30,7 @@ body {
   background-color: teal;
 }
 h1 {
-  color: white;
+  color: black;
 }
 h3 {
     font-size: 20px;
@@ -30,7 +38,7 @@ h3 {
 }
 h2 {
     font-size: 30px;
-    color: white;
+    color: black;
 }
 button {
   margin-bottom: 20px;
@@ -47,7 +55,11 @@ textarea, input {
   background-color: lightgray;
 }
 #titleinput {
-  color: white;
+  color: black;
+  background-color: white;
+}
+#noteHeader {
+  background-color: white;
 }
 input {
   height: 36px;
