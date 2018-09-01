@@ -8,17 +8,17 @@ $.getJSON("/articles", function(data) {
     }
   });
 
-//   scrape button functionality
-//   $("#scrapeButton").on("click", function() {
-//     $.ajax({
-//         method: "GET",
-//         url: "/scrape",
-//     }).then(function(data) {
-//         console.log("here is the " + data);
-//         window.location = "/";
-//         return data;
-//     })
-// });
+  // scrape button functionality
+  $("#scrapeButton").on("click", function() {
+    $.ajax({
+        method: "GET",
+        url: "/scrape",
+    }).then(function(data) {
+        console.log("here is the " + data);
+        window.location = "/";
+        return data;
+    })
+});
   
   
   // Whenever someone clicks the articlebtn

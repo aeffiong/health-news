@@ -1,4 +1,7 @@
-body { background-color: white }
+body { 
+  background-color: white;
+  background-image: url("../images/abstract-art-astronomy-220071.jpg")
+ }
 #wrapper {
   width: 960px;
   margin-left: auto;
@@ -11,11 +14,23 @@ body { background-color: white }
   width: 60%;
   height: 700px;
 }
+#articlebtn {
+  background-color: teal;
+  color: white;
+}
+.btn-large {
+  background-color: teal;
+}
+h1 {
+  color: white;
+}
 h3 {
     font-size: 20px;
+    color: white;
 }
 h2 {
     font-size: 30px;
+    color: white;
 }
 button {
   margin-bottom: 20px;
@@ -24,11 +39,15 @@ button {
   float: right;
   width: 30%;
   font-size: 20px;
+  color: white;
 }
 textarea, input {
   display: block;
   width: 100%;
   background-color: lightgray;
+}
+#titleinput {
+  color: white;
 }
 input {
   height: 36px;
